@@ -5,7 +5,6 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import javax.swing.JButton;
 import javax.swing.JFrame;
-import javax.swing.JPanel;
 import javax.swing.JTextField;
 import javax.swing.UIManager;
 
@@ -34,12 +33,10 @@ public class Calculator {
 
     public Calculator() {
         final JFrame frame = new JFrame("Calculator");
-        final JPanel panel = new JPanel();
-        panel.setLayout(null);
+        frame.setLayout(null);
         frame.setSize(300, 315);
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         frame.setResizable(false);
-        frame.add(panel);
         inputField.setEditable(false);
 
         // setting button colors
@@ -72,26 +69,26 @@ public class Calculator {
         equalToBtn.setBounds(215, 235, 80, 40);
 
         // adding components
-        panel.add(inputField);
-        panel.add(btnSeven);
-        panel.add(btnEight);
-        panel.add(btnNine);
-        panel.add(clearBtn);
+        frame.add(inputField);
+        frame.add(btnSeven);
+        frame.add(btnEight);
+        frame.add(btnNine);
+        frame.add(clearBtn);
 
-        panel.add(btnFour);
-        panel.add(btnFive);
-        panel.add(btnSix);
-        panel.add(divideBtn);
+        frame.add(btnFour);
+        frame.add(btnFive);
+        frame.add(btnSix);
+        frame.add(divideBtn);
 
-        panel.add(btnOne);
-        panel.add(btnTwo);
-        panel.add(btnThree);
-        panel.add(multiplyBtn);
+        frame.add(btnOne);
+        frame.add(btnTwo);
+        frame.add(btnThree);
+        frame.add(multiplyBtn);
 
-        panel.add(btnZero);
-        panel.add(additionBtn);
-        panel.add(subtractBtn);
-        panel.add(equalToBtn);
+        frame.add(btnZero);
+        frame.add(additionBtn);
+        frame.add(subtractBtn);
+        frame.add(equalToBtn);
 
         frame.setVisible(true);
         buttonFunctions();
@@ -108,10 +105,10 @@ public class Calculator {
         } catch (Exception e) { /* do nothing */ }
     }
 
-    String firstNumber = "0";
-    String secondNumber = "0";
-    String operator = "";
-    String currentNumber = "";
+    private String firstNumber = "0";
+    private String secondNumber = "0";
+    private String operator = "";
+    private String currentNumber = "";
 
     private void buttonFunctions() {
 
