@@ -10,26 +10,26 @@ import javax.swing.UIManager;
 
 public class Calculator {
 
-    JTextField inputField = new JTextField();
-    final JButton btnSeven = new JButton("7");
-    final JButton btnEight = new JButton("8");
-    final JButton btnNine = new JButton("9");
-    final JButton clearBtn = new JButton("Clear");
+    JTextField inputField   = new JTextField();
+    final JButton btnSeven  = new JButton("7");
+    final JButton btnEight  = new JButton("8");
+    final JButton btnNine   = new JButton("9");
+    final JButton clearBtn  = new JButton("Clear");
 
-    final JButton btnFour = new JButton("4");
-    final JButton btnFive = new JButton("5");
-    final JButton btnSix = new JButton("6");
+    final JButton btnFour   = new JButton("4");
+    final JButton btnFive   = new JButton("5");
+    final JButton btnSix    = new JButton("6");
     final JButton divideBtn = new JButton("/");
 
-    final JButton btnOne = new JButton("1");
-    final JButton btnTwo = new JButton("2");
-    final JButton btnThree = new JButton("3");
-    final JButton multiplyBtn = new JButton("x");
+    final JButton btnOne        = new JButton("1");
+    final JButton btnTwo        = new JButton("2");
+    final JButton btnThree      = new JButton("3");
+    final JButton multiplyBtn   = new JButton("x");
 
-    final JButton btnZero = new JButton("0");
-    final JButton additionBtn = new JButton("+");
-    final JButton subtractBtn = new JButton("--");
-    final JButton equalToBtn = new JButton("=");
+    final JButton btnZero       = new JButton("0");
+    final JButton additionBtn   = new JButton("+");
+    final JButton subtractBtn   = new JButton("--");
+    final JButton equalToBtn    = new JButton("=");
 
     public Calculator() {
         final JFrame frame = new JFrame("Calculator");
@@ -47,26 +47,26 @@ public class Calculator {
         equalToBtn.setForeground(Color.WHITE);
 
         // dimension and sizes for components
-        inputField.setBounds(5, 30, 290, 40);
-        btnSeven.setBounds(5, 100, 70, 40);
-        btnEight.setBounds(75, 100, 70, 40);
-        btnNine.setBounds(146, 100, 70, 40);
-        clearBtn.setBounds(215, 100, 80, 40);
+        inputField.setBounds(5, 30,  290, 40);
+        btnSeven.setBounds(5,   100, 70,  40);
+        btnEight.setBounds(75,  100, 70,  40);
+        btnNine.setBounds(146,  100, 70,  40);
+        clearBtn.setBounds(215, 100, 80,  40);
 
-        btnFour.setBounds(5, 145, 70, 40);
-        btnFive.setBounds(75, 145, 70, 40);
-        btnSix.setBounds(146, 145, 70, 40);
+        btnFour.setBounds(5,     145, 70, 40);
+        btnFive.setBounds(75,    145, 70, 40);
+        btnSix.setBounds(146,    145, 70, 40);
         divideBtn.setBounds(215, 145, 80, 40);
 
-        btnOne.setBounds(5, 190, 70, 40);
-        btnTwo.setBounds(75, 190, 70, 40);
-        btnThree.setBounds(146, 190, 70, 40);
+        btnOne.setBounds(5,        190, 70, 40);
+        btnTwo.setBounds(75,       190, 70, 40);
+        btnThree.setBounds(146,    190, 70, 40);
         multiplyBtn.setBounds(215, 190, 80, 40);
 
-        btnZero.setBounds(5, 235, 70, 40);
-        additionBtn.setBounds(75, 235, 70, 40);
+        btnZero.setBounds(5,       235, 70, 40);
+        additionBtn.setBounds(75,  235, 70, 40);
         subtractBtn.setBounds(146, 235, 70, 40);
-        equalToBtn.setBounds(215, 235, 80, 40);
+        equalToBtn.setBounds(215,  235, 80, 40);
 
         // adding components
         frame.add(inputField);
@@ -95,19 +95,19 @@ public class Calculator {
     }
 
     public static void main(String[] args) {
-        setLookAndFeel();
+        setNimbusLookAndFeel();
         new Calculator();
     }
 
-    private static void setLookAndFeel() {
+    public static void setNimbusLookAndFeel() {
         try {
             UIManager.setLookAndFeel("javax.swing.plaf.nimbus.NimbusLookAndFeel");
         } catch (Exception e) { /* do nothing */ }
     }
 
-    private String firstNumber = "0";
-    private String secondNumber = "0";
-    private String operator = "";
+    private String firstNumber   = "0";
+    private String secondNumber  = "0";
+    private String operator      = "";
     private String currentNumber = "";
 
     private void buttonFunctions() {
@@ -247,6 +247,13 @@ public class Calculator {
         inputField.setText(currentNumber = "");
     }
 
+    /**
+     * 
+     * @param firstNumber
+     * @param operator arithmetic operator
+     * @param secondNumber
+     * @return a string containing the answer
+     */
     public String calculate(String firstNumber, String operator, String secondNumber) {
         try {
             int first = Integer.parseInt(firstNumber);
