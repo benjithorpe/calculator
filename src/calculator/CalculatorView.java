@@ -7,69 +7,71 @@ import javax.swing.UIManager;
 
 public class CalculatorView {
 
-    JButton btnSeven = new JButton("7");
-    JButton btnEight = new JButton("8");
-    JButton btnNine = new JButton("9");
+    final JButton btnSeven = new JButton("7");
+    final JButton btnEight = new JButton("8");
+    final JButton btnNine = new JButton("9");
 
-    JButton btnFour = new JButton("4");
-    JButton btnFive = new JButton("5");
-    JButton btnSix = new JButton("6");
+    final JButton btnFour = new JButton("4");
+    final JButton btnFive = new JButton("5");
+    final JButton btnSix = new JButton("6");
 
-    JButton btnOne = new JButton("1");
-    JButton btnTwo = new JButton("2");
-    JButton btnThree = new JButton("3");
-    
-    JButton zeroBtn = new JButton("0");
-    JButton periodBtn = new JButton(".");
+    final JButton btnOne = new JButton("1");
+    final JButton btnTwo = new JButton("2");
+    final JButton btnThree = new JButton("3");
+
+    final JButton zeroBtn = new JButton("0");
+    final JButton periodBtn = new JButton(".");
 
     // arithmetic operator buttons
-    JButton additionBtn = new JButton("+");
-    JButton subtractionBtn = new JButton("--");
-    JButton divisionBtn = new JButton("/");
-    JButton multiplicationBtn = new JButton("X");
+    final JButton additionBtn = new JButton("+");
+    final JButton subtractionBtn = new JButton("--");
+    final JButton divisionBtn = new JButton("/");
+    final JButton multiplicationBtn = new JButton("X");
 
-    JButton clearBtn = new JButton("C");
-    JButton deleteBtn = new JButton("Del");
-    JButton equalToBtn = new JButton("=");
-    
-    JButton offBtn = new JButton("OFF");
+    final JButton clearBtn = new JButton("C");
+    final JButton deleteBtn = new JButton("Del");
+    final JButton equalToBtn = new JButton("=");
+
+    final JButton offBtn = new JButton("OFF");
     JTextField outputField = new JTextField("Output");
 
-    public CalculatorView(){
+    public CalculatorView() {
         JFrame frame = new JFrame("Basic Calculator");
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        frame.setSize(270, 400);
+        frame.setSize(225, 270);
         frame.setResizable(false);
         frame.setLayout(null);
-        
+
         // setting dimensions of buttons
-        btnSeven.setBounds(5, 50, 50, 30);
-        btnEight.setBounds(60, 50, 50, 30);
-        btnNine.setBounds(115, 50, 50, 30);
-        
-        btnFour.setBounds(5, 75, 50, 30);
-        btnFive.setBounds(60, 75, 50, 30);
-        btnSix.setBounds(115, 75, 50, 30);
-        
-        btnOne.setBounds(5, 100, 50, 30);
-        btnTwo.setBounds(60, 100, 50, 30);
-        btnThree.setBounds(115, 100, 50, 30);
-        
-        zeroBtn.setBounds(60, 125, 50, 30);
-        periodBtn.setBounds(5, 125, 50, 30);
-        equalToBtn.setBounds(115, 130, 50, 30);
-        
-        subtractionBtn.setBounds(170, 50, 50, 30);
-        additionBtn.setBounds(170, 75, 50, 30);
-        multiplicationBtn.setBounds(170, 100, 50, 30);
-        divisionBtn.setBounds(170, 125, 50, 30);
-        
-        offBtn.setBounds(5, 150, 60, 30);
-        
-        outputField.setBounds(5, 10, 260, 40);
-//        outputField.setBorder(null);  // removes the border
+        btnSeven.setBounds(5, 80, 50, 30);
+        btnEight.setBounds(60, 80, 50, 30);
+        btnNine.setBounds(115, 80, 50, 30);
+        divisionBtn.setBounds(170, 80, 50, 30);
+
+        btnFour.setBounds(5, 110, 50, 30);
+        btnFive.setBounds(60, 110, 50, 30);
+        btnSix.setBounds(115, 110, 50, 30);
+        multiplicationBtn.setBounds(170, 110, 50, 30);
+
+        btnOne.setBounds(5, 140, 50, 30);
+        btnTwo.setBounds(60, 140, 50, 30);
+        btnThree.setBounds(115, 140, 50, 30);
+        subtractionBtn.setBounds(170, 140, 50, 30);
+
+        periodBtn.setBounds(5, 170, 50, 30);
+        zeroBtn.setBounds(60, 170, 50, 30);
+        equalToBtn.setBounds(115, 170, 50, 30);
+        additionBtn.setBounds(170, 170, 50, 30);
+
+        offBtn.setBounds(5, 50, 52, 30);  // exits the calculator
+        clearBtn.setBounds(115, 50, 50, 30);
+        deleteBtn.setBounds(170, 50, 50, 30);
+
+        outputField.setBounds(5, 5, 215, 40);
+        outputField.setHorizontalAlignment(JTextField.RIGHT);  // sets text to right
+        outputField.setBorder(null);  // removes the border
         outputField.setEditable(false);  // block any edits
-        
+
         // adding the buttons
         frame.getContentPane().add(zeroBtn);
         frame.getContentPane().add(btnOne);
@@ -91,7 +93,7 @@ public class CalculatorView {
         frame.getContentPane().add(outputField);
         frame.getContentPane().add(equalToBtn);
         frame.getContentPane().add(offBtn);
-        
+
         frame.setVisible(true);
     }
 
@@ -99,8 +101,8 @@ public class CalculatorView {
         setLooks();
         new CalculatorView();
     }
-    
-    static void setLooks(){
+
+    static void setLooks() {
         try {
             UIManager.setLookAndFeel("javax.swing.plaf.nimbus.NimbusLookAndFeel");
         } catch (Exception e) {
