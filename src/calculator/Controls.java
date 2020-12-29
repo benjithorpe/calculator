@@ -1,24 +1,6 @@
 package calculator;
 
-import java.util.Scanner;
-
-public class Calculator {
-
-    public static void main(String[] args) {
-        Scanner scanner = new Scanner(System.in);
-
-        System.out.print("Enter First Number: ");
-        int firstNumber = scanner.nextInt();
-
-        System.out.print("Enter Second Number: ");
-        int secondNumber = scanner.nextInt();
-
-        System.out.print("Enter Operator: ");
-        String operator = scanner.next();
-
-        int answer = calculate(firstNumber, operator, secondNumber);
-        System.out.println("Answer: " + answer);
-    }
+public class Controls {
 
     /**
      *
@@ -44,4 +26,5 @@ public class Calculator {
         } // end switch case
 
     }
+
 }
