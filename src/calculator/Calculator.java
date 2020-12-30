@@ -1,11 +1,13 @@
 package calculator;
 
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JTextField;
 import javax.swing.UIManager;
 
-public class CalculatorView {
+public class Calculator {
 
     final JButton btnSeven = new JButton("7");
     final JButton btnEight = new JButton("8");
@@ -35,7 +37,7 @@ public class CalculatorView {
     final JButton offBtn = new JButton("OFF");
     JTextField outputField = new JTextField("Output");
 
-    public CalculatorView() {
+    public void design() {
         JFrame frame = new JFrame("Basic Calculator");
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         frame.setSize(225, 270);
@@ -97,9 +99,62 @@ public class CalculatorView {
         frame.setVisible(true);
     }
 
+    /**
+     *
+     * @param firstNumber the first number
+     * @param operator arithmetic operator
+     * @param secondNumber the second number
+     * @return an int containing the answer
+     */
+    public static int calculate(int firstNumber, String operator, int secondNumber) {
+
+        switch (operator) {
+            case "+":
+                return (firstNumber + secondNumber);
+            case "-":
+                return (firstNumber - secondNumber);
+            case "/":
+                return (firstNumber / secondNumber);
+            case "x":
+            case "*":
+                return (firstNumber * secondNumber);
+            default:
+                return 0;
+        } // end switch case
+
+    }
+
+    private void functions() {
+        offBtn.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent ae) {
+                System.exit(0);
+            }
+        });
+
+        clearBtn.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent ae) {
+                outputField.setText("");
+            }
+        });
+
+        deleteBtn.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent ae) {
+                String currentValue = outputField.getText();
+                StringBuilder removed = new StringBuilder(currentValue);
+                StringBuilder returnValue = removed.delete(currentValue.length() - 1, currentValue.length());
+                outputField.setText(returnValue + "");
+            }
+        });
+    }
+
     public static void main(String[] args) {
         setLooks();
-        new CalculatorView();
+        Calculator calculator = new Calculator();
+        calculator.design();
+        calculator.functions();
     }
 
     static void setLooks() {
