@@ -99,30 +99,10 @@ public class Calculator {
         frame.setVisible(true);
     }
 
-    /**
-     *
-     * @param firstNumber the first number
-     * @param operator arithmetic operator
-     * @param secondNumber the second number
-     * @return an int containing the answer
-     */
-    public static int calculate(int firstNumber, String operator, int secondNumber) {
-
-        switch (operator) {
-            case "+":
-                return (firstNumber + secondNumber);
-            case "-":
-                return (firstNumber - secondNumber);
-            case "/":
-                return (firstNumber / secondNumber);
-            case "x":
-            case "*":
-                return (firstNumber * secondNumber);
-            default:
-                return 0;
-        } // end switch case
-
-    }
+    String firstNumber = "0";
+    String secondNumber = "0";
+    String operator = "";
+    String currentNumber = "";
 
     private void functions() {
         offBtn.addActionListener(new ActionListener() {
@@ -136,6 +116,7 @@ public class Calculator {
             @Override
             public void actionPerformed(ActionEvent ae) {
                 outputField.setText("");
+                currentNumber = "";
             }
         });
 
@@ -148,32 +129,175 @@ public class Calculator {
                 outputField.setText(returnValue + "");
             }
         });
+        deleteBtn.setEnabled(false);
 
-        String current = outputField.getText();
-        
-        btnSeven.addActionListener(new ActionListener() {
+        btnNine.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent ae) {
-                System.out.println(current + "7");
-            outputField.setText(current + "7");
+                currentNumber += "9";
+                outputField.setText(currentNumber);
             }
         });
 
         btnEight.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent ae) {
-            outputField.setText(current + "8");
-
+                currentNumber += "8";
+                outputField.setText(currentNumber);
             }
         });
 
-        btnNine.addActionListener(new ActionListener() {
+        btnSeven.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent ae) {
-            outputField.setText(current + "9");
-
+                currentNumber += "7";
+                outputField.setText(currentNumber);
             }
         });
+
+        btnSix.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent ae) {
+                currentNumber += "6";
+                outputField.setText(currentNumber);
+            }
+        });
+
+        btnFive.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent ae) {
+                currentNumber += "5";
+                outputField.setText(currentNumber);
+            }
+        });
+
+        btnFour.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent ae) {
+                currentNumber += "4";
+                outputField.setText(currentNumber);
+            }
+        });
+
+        btnThree.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent ae) {
+                currentNumber += "3";
+                outputField.setText(currentNumber);
+            }
+        });
+
+        btnTwo.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent ae) {
+                currentNumber += "2";
+                outputField.setText(currentNumber);
+            }
+        });
+
+        btnOne.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent ae) {
+                currentNumber += "1";
+                outputField.setText(currentNumber);
+            }
+        });
+
+        zeroBtn.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent ae) {
+                currentNumber += "0";
+                outputField.setText(currentNumber);
+            }
+        });
+
+        periodBtn.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent ae) {
+                currentNumber += ".";
+                outputField.setText(currentNumber);
+            }
+        });
+
+        additionBtn.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent ae) {
+                firstNumber = outputField.getText();
+                operator = "+";
+                currentNumber = "";
+                outputField.setText(operator);
+            }
+        });
+
+        subtractionBtn.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent ae) {
+                firstNumber = outputField.getText();
+                operator = "--";
+                currentNumber = "";
+                outputField.setText(operator);
+            }
+        });
+
+        divisionBtn.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent ae) {
+                firstNumber = outputField.getText();
+                operator = "/";
+                currentNumber = "";
+                outputField.setText(operator);
+            }
+        });
+
+        multiplicationBtn.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent ae) {
+                firstNumber = outputField.getText();
+                operator = "X";
+                currentNumber = "";
+                outputField.setText(operator);
+            }
+        });
+
+        equalToBtn.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent ae) {
+                secondNumber = outputField.getText();
+
+                try {
+                    double first = Double.parseDouble(firstNumber);
+                    double second = Double.parseDouble(secondNumber);
+                    currentNumber = "";
+
+                    outputField.setText(calculate(first, operator, second) + "");
+                } catch (NumberFormatException nfe) {
+                }
+                System.out.println(secondNumber);
+            }
+        });
+    }
+
+    /**
+     *
+     * @param firstNumber the first number
+     * @param operator arithmetic operator
+     * @param secondNumber the second number
+     * @return an int containing the answer
+     */
+    public static double calculate(double firstNumber, String operator, double secondNumber) {
+
+        switch (operator) {
+            case "+":
+                return (firstNumber + secondNumber);
+            case "--":
+                return (firstNumber - secondNumber);
+            case "/":
+                return (firstNumber / secondNumber);
+            case "X":
+                return (firstNumber * secondNumber);
+            default:
+                return 0;
+        } // end switch case
     }
 
     public static void main(String[] args) {
@@ -189,5 +313,4 @@ public class Calculator {
         } catch (Exception e) {
         }
     }
-
 }
