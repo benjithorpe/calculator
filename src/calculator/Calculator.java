@@ -35,7 +35,7 @@ public class Calculator {
     final JButton equalToBtn = new JButton("=");
 
     final JButton offBtn = new JButton("OFF");
-    JTextField outputField = new JTextField("Output");
+    JTextField outputField = new JTextField();
 
     public void design() {
         JFrame frame = new JFrame("Basic Calculator");
@@ -146,6 +146,32 @@ public class Calculator {
                 StringBuilder removed = new StringBuilder(currentValue);
                 StringBuilder returnValue = removed.delete(currentValue.length() - 1, currentValue.length());
                 outputField.setText(returnValue + "");
+            }
+        });
+
+        String current = outputField.getText();
+        
+        btnSeven.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent ae) {
+                System.out.println(current + "7");
+            outputField.setText(current + "7");
+            }
+        });
+
+        btnEight.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent ae) {
+            outputField.setText(current + "8");
+
+            }
+        });
+
+        btnNine.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent ae) {
+            outputField.setText(current + "9");
+
             }
         });
     }
