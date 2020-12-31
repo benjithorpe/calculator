@@ -126,10 +126,9 @@ public class Calculator {
                 String currentValue = outputField.getText();
                 StringBuilder removed = new StringBuilder(currentValue);
                 StringBuilder returnValue = removed.delete(currentValue.length() - 1, currentValue.length());
-                outputField.setText(returnValue + "");
+                outputField.setText(currentNumber = returnValue + "");
             }
         });
-        deleteBtn.setEnabled(false);
 
         btnNine.addActionListener(new ActionListener() {
             @Override
@@ -265,14 +264,20 @@ public class Calculator {
                 secondNumber = outputField.getText();
 
                 try {
-                    double first = Double.parseDouble(firstNumber);
-                    double second = Double.parseDouble(secondNumber);
-                    currentNumber = "";
+                    if (firstNumber.contains(".") || secondNumber.contains(".")) {
+                        double first = Double.parseDouble(firstNumber);
+                        double second = Double.parseDouble(secondNumber);
+                        // use the method that accepts double values
+                        outputField.setText(calculate(first, operator, second) + "");
+                    } else {
+                        int first = Integer.parseInt(firstNumber);
+                        int second = Integer.parseInt(secondNumber);
+                        outputField.setText(calculate(first, operator, second) + "");
+                    }
 
-                    outputField.setText(calculate(first, operator, second) + "");
                 } catch (NumberFormatException nfe) {
+                    currentNumber = "";
                 }
-                System.out.println(secondNumber);
             }
         });
     }
@@ -285,6 +290,29 @@ public class Calculator {
      * @return an int containing the answer
      */
     public static double calculate(double firstNumber, String operator, double secondNumber) {
+
+        switch (operator) {
+            case "+":
+                return (firstNumber + secondNumber);
+            case "--":
+                return (firstNumber - secondNumber);
+            case "/":
+                return (firstNumber / secondNumber);
+            case "X":
+                return (firstNumber * secondNumber);
+            default:
+                return 0;
+        } // end switch case
+    }
+
+    /**
+     *
+     * @param firstNumber the first number
+     * @param operator arithmetic operator
+     * @param secondNumber the second number
+     * @return an int containing the answer
+     */
+    public static int calculate(int firstNumber, String operator, int secondNumber) {
 
         switch (operator) {
             case "+":
