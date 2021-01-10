@@ -99,10 +99,19 @@ public class Calculator {
         frame.setVisible(true);
     }
 
-    String firstNumber = "0";
-    String secondNumber = "0";
-    String operator = "";
-    String currentNumber = "";
+    StringBuilder currentNumber = new StringBuilder();
+    boolean isOperatorPresent = false;
+
+    void deleteOneValue() {
+        StringBuilder currentValue = new StringBuilder(outputField.getText() + "");
+        StringBuilder removed = new StringBuilder(currentValue);
+
+        // check if there is value in the text field before deleting it
+        if (removed.length() != 0) {
+            StringBuilder returnValue = removed.delete(currentValue.length() - 1, currentValue.length());
+            outputField.setText((currentNumber = returnValue) + "");
+        }
+    }
 
     private void functions() {
         offBtn.addActionListener(new ActionListener() {
@@ -116,215 +125,203 @@ public class Calculator {
             @Override
             public void actionPerformed(ActionEvent ae) {
                 outputField.setText("");
-                currentNumber = "";
+                currentNumber.delete(0, currentNumber.length());
             }
         });
 
         deleteBtn.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent ae) {
-                String currentValue = outputField.getText();
-                StringBuilder removed = new StringBuilder(currentValue);
-                StringBuilder returnValue = removed.delete(currentValue.length() - 1, currentValue.length());
-                outputField.setText(currentNumber = returnValue + "");
+                deleteOneValue();
             }
         });
 
         btnNine.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent ae) {
-                currentNumber += "9";
-                outputField.setText(currentNumber);
+                currentNumber.append("9");
+                outputField.setText(currentNumber + "");
             }
         });
 
         btnEight.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent ae) {
-                currentNumber += "8";
-                outputField.setText(currentNumber);
+                currentNumber.append("8");
+                outputField.setText(currentNumber + "");
             }
         });
 
         btnSeven.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent ae) {
-                currentNumber += "7";
-                outputField.setText(currentNumber);
+                currentNumber.append("7");
+                outputField.setText(currentNumber + "");
             }
         });
 
         btnSix.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent ae) {
-                currentNumber += "6";
-                outputField.setText(currentNumber);
+                currentNumber.append("6");
+                outputField.setText(currentNumber + "");
             }
         });
 
         btnFive.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent ae) {
-                currentNumber += "5";
-                outputField.setText(currentNumber);
+                currentNumber.append("5");
+                outputField.setText(currentNumber + "");
             }
         });
 
-        btnFour.addActionListener(new ActionListener() {
+        btnFour.addActionListener(
+                new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent ae) {
-                currentNumber += "4";
-                outputField.setText(currentNumber);
+                currentNumber.append("4");
+                outputField.setText(currentNumber + "");
             }
         });
 
         btnThree.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent ae) {
-                currentNumber += "3";
-                outputField.setText(currentNumber);
+                currentNumber.append("3");
+                outputField.setText(currentNumber + "");
             }
         });
 
         btnTwo.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent ae) {
-                currentNumber += "2";
-                outputField.setText(currentNumber);
+                currentNumber.append("2");
+                outputField.setText(currentNumber + "");
             }
         });
 
         btnOne.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent ae) {
-                currentNumber += "1";
-                outputField.setText(currentNumber);
+                currentNumber.append("1");
+                outputField.setText(currentNumber + "");
             }
         });
 
         zeroBtn.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent ae) {
-                currentNumber += "0";
-                outputField.setText(currentNumber);
+                currentNumber.append("0");
+                outputField.setText(currentNumber + "");
             }
         });
 
         periodBtn.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent ae) {
-                currentNumber += ".";
-                outputField.setText(currentNumber);
+                currentNumber.append(".");
+                outputField.setText(currentNumber + "");
             }
         });
 
         additionBtn.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent ae) {
-                firstNumber = outputField.getText();
-                operator = "+";
-                currentNumber = "";
-                outputField.setText(operator);
+                outputField.setText(currentNumber.append(" + ") + "");
             }
         });
 
         subtractionBtn.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent ae) {
-                firstNumber = outputField.getText();
-                operator = "--";
-                currentNumber = "";
-                outputField.setText(operator);
+                outputField.setText(currentNumber.append(" -- ") + "");
             }
         });
 
         divisionBtn.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent ae) {
-                firstNumber = outputField.getText();
-                operator = "/";
-                currentNumber = "";
-                outputField.setText(operator);
+                outputField.setText(currentNumber.append(" / ") + "");
             }
         });
 
         multiplicationBtn.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent ae) {
-                firstNumber = outputField.getText();
-                operator = "X";
-                currentNumber = "";
-                outputField.setText(operator);
+                outputField.setText(currentNumber.append(" X ") + "");
             }
         });
 
         equalToBtn.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent ae) {
-                secondNumber = outputField.getText();
+                String[] expression = outputField.getText().split(" ");
+                if (expression.length == 3) {
+                    String first = expression[0].trim();
+                    String opt = expression[1].trim();
+                    String second = expression[2].trim();
+                    String answer = "";
 
-                try {
-                    if (firstNumber.contains(".") || secondNumber.contains(".")) {
-                        double first = Double.parseDouble(firstNumber);
-                        double second = Double.parseDouble(secondNumber);
-                        // use the method that accepts double values
-                        outputField.setText(calculate(first, operator, second) + "");
-                    } else {
-                        int first = Integer.parseInt(firstNumber);
-                        int second = Integer.parseInt(secondNumber);
-                        outputField.setText(calculate(first, operator, second) + "");
+                    try {
+                        if (first.contains(".") || second.contains(".")) {
+                            double firstNum = Double.parseDouble(first);
+                            double secondNum = Double.parseDouble(second);
+
+                            answer = calculate(firstNum, opt, secondNum);
+                            outputField.setText(answer);
+                        } else {
+                            int firstNum = Integer.parseInt(first);
+                            int secondNum = Integer.parseInt(second);
+                            answer = calculate(firstNum, opt, secondNum);
+                            outputField.setText(answer);
+                        }
+
+                    } catch (NumberFormatException nfe) {
                     }
-
-                } catch (NumberFormatException nfe) {
-                    currentNumber = "";
+                    currentNumber.replace(0, currentNumber.length(), answer);
                 }
             }
         });
     }
 
-    /**
-     *
-     * @param firstNumber the first number
-     * @param operator arithmetic operator
-     * @param secondNumber the second number
-     * @return an int containing the answer
-     */
-    public static double calculate(double firstNumber, String operator, double secondNumber) {
+    public static String calculate(double firstNumber, String operator, double secondNumber) {
+
+        if (secondNumber == 0.0) {
+            return "0";
+        }
 
         switch (operator) {
             case "+":
-                return (firstNumber + secondNumber);
+                return (firstNumber + secondNumber) + "";
             case "--":
-                return (firstNumber - secondNumber);
+                return (firstNumber - secondNumber) + "";
             case "/":
-                return (firstNumber / secondNumber);
+                return (firstNumber / secondNumber) + "";
             case "X":
-                return (firstNumber * secondNumber);
+                return (firstNumber * secondNumber) + "";
             default:
-                return 0;
+                return "0";
         } // end switch case
     }
 
-    /**
-     *
-     * @param firstNumber the first number
-     * @param operator arithmetic operator
-     * @param secondNumber the second number
-     * @return an int containing the answer
-     */
-    public static int calculate(int firstNumber, String operator, int secondNumber) {
+    public static String calculate(int firstNumber, String operator, int secondNumber) {
+
+        if (secondNumber == 0) {
+            return "0.0";
+        }
 
         switch (operator) {
             case "+":
-                return (firstNumber + secondNumber);
+                return (firstNumber + secondNumber) + "";
             case "--":
-                return (firstNumber - secondNumber);
+                return (firstNumber - secondNumber) + "";
             case "/":
-                return (firstNumber / secondNumber);
+                return (firstNumber / secondNumber) + "";
             case "X":
-                return (firstNumber * secondNumber);
+                return (firstNumber * secondNumber) + "";
             default:
-                return 0;
+                return "0";
         } // end switch case
     }
 
