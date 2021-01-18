@@ -259,7 +259,7 @@ public class Calculator {
                 String[] expression = outputField.getText().split(" ");
                 if (expression.length == 3) {
                     String first = expression[0].trim();
-                    String opt = expression[1].trim();
+                    String operator = expression[1].trim();
                     String second = expression[2].trim();
                     String answer = "";
 
@@ -268,12 +268,13 @@ public class Calculator {
                             double firstNum = Double.parseDouble(first);
                             double secondNum = Double.parseDouble(second);
 
-                            answer = calculate(firstNum, opt, secondNum);
+                            answer = calculate(firstNum, operator, secondNum);
                             outputField.setText(answer);
                         } else {
                             int firstNum = Integer.parseInt(first);
                             int secondNum = Integer.parseInt(second);
-                            answer = calculate(firstNum, opt, secondNum);
+
+                            answer = calculate(firstNum, operator, secondNum);
                             outputField.setText(answer);
                         }
 
@@ -286,9 +287,9 @@ public class Calculator {
     }
 
     public static String calculate(double firstNumber, String operator, double secondNumber) {
-
+        // checks for invalid division value
         if (secondNumber == 0.0) {
-            return "0";
+            return "0.0";
         }
 
         switch (operator) {
@@ -301,14 +302,14 @@ public class Calculator {
             case "X":
                 return (firstNumber * secondNumber) + "";
             default:
-                return "0";
+                return "0.0";
         } // end switch case
     }
 
     public static String calculate(int firstNumber, String operator, int secondNumber) {
-
+        // checks for invalid division value
         if (secondNumber == 0) {
-            return "0.0";
+            return "0";
         }
 
         switch (operator) {
